@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstMonoGame", "FirstMonoGame\FirstMonoGame.csproj", "{B8A70FCD-8184-4C41-9D85-826277B7303C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBracket.MonoGame", "DBracket.MonoGame\DBracket.MonoGame.csproj", "{5AEE5A30-7379-4490-91AA-E58A3DA8A65C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8A70FCD-8184-4C41-9D85-826277B7303C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A70FCD-8184-4C41-9D85-826277B7303C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A70FCD-8184-4C41-9D85-826277B7303C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A70FCD-8184-4C41-9D85-826277B7303C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AEE5A30-7379-4490-91AA-E58A3DA8A65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AEE5A30-7379-4490-91AA-E58A3DA8A65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AEE5A30-7379-4490-91AA-E58A3DA8A65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AEE5A30-7379-4490-91AA-E58A3DA8A65C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03F9F698-E265-474F-AFD9-6D2E5800BD5D}
+	EndGlobalSection
+EndGlobal
