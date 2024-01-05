@@ -1,10 +1,8 @@
-﻿using FirstMonoGame.Base._2D.Renderer;
+﻿using FirstMonoGame.Base._2D.Actor;
 using FirstMonoGame.Base.Character;
 using FirstMonoGame.MyGame.Characters.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace FirstMonoGame.MyGame.Characters.Zombie
 {
@@ -13,8 +11,9 @@ namespace FirstMonoGame.MyGame.Characters.Zombie
         #region "----------------------------- Private Fields ------------------------------"
         private float _speed = 7.0f;
 
-        private ZombieAnimationController _zombieAnimationController;
+        //private ZombieAnimationController _zombieAnimationController;
         private ZombieStates _states;
+        private ZombieAnimationManager _animationManager;
 
         private bool _lastRight = true;
         #endregion
@@ -35,8 +34,10 @@ namespace FirstMonoGame.MyGame.Characters.Zombie
         public void Init(ContentManager content, float xPosition = 0.0f, float yPosition = 0.0f)
         {
             _states = new ZombieStates();
-            _zombieAnimationController = new ZombieAnimationController(content, _states as ZombieStates);
-            SetAnimationController(_zombieAnimationController);
+            //_zombieAnimationController = new ZombieAnimationController(content, _states as ZombieStates);
+            //SetAnimationController(_zombieAnimationController);
+            _animationManager = new ZombieAnimationManager(content, _states);
+            AddComponent(new SpriteAnimatorComponent(this, _animationManager));
             _xPosition = xPosition;
             _yPosition = yPosition;
         }
@@ -126,23 +127,23 @@ namespace FirstMonoGame.MyGame.Characters.Zombie
             base.Update(elapsedTime);
         }
 
-        public override void GetDrawInfo(ref DrawInfo2D drawInfo)
-        {
-            base._animationController.GetDrawInfoSprite(ref drawInfo);
-            if (drawInfo.IsTileMap)
-            {
-                drawInfo.DestinationRectancle = new Rectangle(
-                    (int)_xPosition, 
-                    (int)_yPosition, 
-                    (int)(drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),
-                    (int)(drawInfo.SourceRectancle.Height * drawInfo.SpriteScale));
-            }
-            else
-            {
-                drawInfo.XPosition = _xPosition;
-                drawInfo.YPosition = _yPosition;
-            }
-        }
+        //public override void GetDrawInfo(ref DrawInfo2D drawInfo)
+        //{
+        //    base._animationController.GetDrawInfoSprite(ref drawInfo);
+        //    if (drawInfo.IsTileMap)
+        //    {
+        //        drawInfo.DestinationRectancle = new Rectangle(
+        //            (int)_xPosition,
+        //            (int)_yPosition,
+        //            (int)(drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),
+        //            (int)(drawInfo.SourceRectancle.Height * drawInfo.SpriteScale));
+        //    }
+        //    else
+        //    {
+        //        drawInfo.XPosition = _xPosition;
+        //        drawInfo.YPosition = _yPosition;
+        //    }
+        //}
 
         public override Vector2 GetPosition()
         {

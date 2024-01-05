@@ -1,19 +1,17 @@
-﻿using FirstMonoGame.Base._2D.Actor;
-
-namespace FirstMonoGame.Base.Character
+﻿namespace FirstMonoGame.Base._2D.Actor.Components
 {
-    internal abstract class CharacterBase : ActorBase
+    public abstract class ActorComponentBase
     {
         #region "----------------------------- Private Fields ------------------------------"
-        //protected SpriteAnimationController _animationController;
+        protected ActorBase _actor;
         #endregion
 
 
 
         #region "------------------------------ Constructor --------------------------------"
-        public CharacterBase()
+        public ActorComponentBase(ActorBase actor)
         {
-
+            _actor = actor;
         }
         #endregion
 
@@ -21,20 +19,11 @@ namespace FirstMonoGame.Base.Character
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-        public override void Update(double elapsedTime)
-        {
-            //_animationController.Tick(elapsedTime);
-            base.Update(elapsedTime);
-        }
-
-
+        public abstract void Update(double elapsedTime);
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"
-        //protected void SetAnimationController(SpriteAnimationController animationController)
-        //{
-        //    _animationController = animationController;
-        //}
+
         #endregion
 
         #region "------------------------------ Event Handling -----------------------------"
@@ -46,7 +35,7 @@ namespace FirstMonoGame.Base.Character
 
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
-        //public CharacterStates CharacterStates { get; protected set; }
+
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

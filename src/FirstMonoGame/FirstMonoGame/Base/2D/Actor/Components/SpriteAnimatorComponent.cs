@@ -1,28 +1,25 @@
 ﻿using FirstMonoGame.Base._2D.Renderer;
-using FirstMonoGame.Base._2D.Sprites;
+using FirstMonoGame.Base._2D.Sprites.Animation;
+using FirstMonoGame.Base.Sprites.Animation;
 
-namespace FirstMonoGame.Base.Sprites.Animation
+namespace FirstMonoGame.Base._2D.Actor.Components
 {
-    public class SpriteAnimation
+    public class SpriteAnimatorComponent : ActorComponentBase
     {
         #region "----------------------------- Private Fields ------------------------------"
-        private SpriteSourceBase _spriteSource;
-        private int _index;
-        private double _frameDelay;
+        // Remote, that sets the current animation and must be created for each character
+        private AnimationStateManager _stateManager;
 
-        private double _timeSpentInFrame;
-
-        private int _spriteGroupNumber;
+        private SpriteAnimation _currentAnimation;
         #endregion
 
 
 
         #region "------------------------------ Constructor --------------------------------"
-        public SpriteAnimation(SpriteSourceBase spriteSource, int spriteGroupNumber, double frameDelay)
+        public SpriteAnimatorComponent(ActorBase actor, AnimationStateManager stateManager) : base(actor)
         {
-            _spriteSource = spriteSource;
-            _spriteGroupNumber = spriteGroupNumber;
-            _frameDelay = frameDelay;
+            _stateManager = stateManager;
+            _stateManager.Initialize(actor);
         }
         #endregion
 
@@ -30,27 +27,26 @@ namespace FirstMonoGame.Base.Sprites.Animation
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-        public void Tick(double time)
+        public override void Update(double elapsedTime)
         {
-            _timeSpentInFrame += time;
-            if (_timeSpentInFrame > _frameDelay)
+            _stateManager.Update(elapsedTime);
+            var animation = _stateManager.GetCurrentAnimation();
+
+            if (_currentAnimation != animation)
             {
-                _timeSpentInFrame = 0;
-                _index++;
+                _currentAnimation = animation;
+                _currentAnimation.Reset();
+                return;
             }
-            if (_index >= _spriteSource.SpriteGroupSpriteCount[_spriteGroupNumber])
-                _index = 0;
+            _currentAnimation?.Tick(elapsedTime);
         }
 
-        public void GetDrawInfoSprite(ref DrawInfo2D drawInfo)
+        public void GetDrawInfoSprite(DrawInfo2D drawInfo)
         {
-            _spriteSource.GetDrawInfo(ref drawInfo, _spriteGroupNumber, _index);
-        }
-
-        public void Reset()
-        {
-            _timeSpentInFrame = 0;
-            _index = 0;
+            if (_currentAnimation is not null)
+            {
+                _currentAnimation.GetDrawInfoSprite(ref drawInfo);
+            }
         }
         #endregion
 

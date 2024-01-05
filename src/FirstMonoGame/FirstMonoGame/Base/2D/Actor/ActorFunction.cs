@@ -1,13 +1,15 @@
-﻿using FirstMonoGame.Base._2D.Renderer;
-using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FirstMonoGame.Base.Actor
+namespace FirstMonoGame.Base._2D.Actor
 {
-    public abstract class ActorBase
+    public class ActorFunction
     {
         #region "----------------------------- Private Fields ------------------------------"
-        protected float _xPosition;
-        protected float _yPosition;
+
         #endregion
 
 
@@ -20,17 +22,6 @@ namespace FirstMonoGame.Base.Actor
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-        public virtual Vector2 GetPosition()
-        {
-            return new Vector2(_xPosition, _yPosition);
-        }
-
-        public virtual void Update(double elapsedTime)
-        {
-
-        }
-
-        public abstract void GetDrawInfo(ref DrawInfo2D drawInfo);
 
         #endregion
 
@@ -47,7 +38,7 @@ namespace FirstMonoGame.Base.Actor
 
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
-        public bool HasToBeRendered { get; protected set; } = true;
+
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

@@ -1,40 +1,39 @@
 ﻿using FirstMonoGame.Base._2D.Actor;
+using FirstMonoGame.Base.Sprites.Animation;
+using System.Collections.Generic;
 
-namespace FirstMonoGame.Base.Character
+namespace FirstMonoGame.Base._2D.Sprites.Animation
 {
-    internal abstract class CharacterBase : ActorBase
+    public abstract class AnimationStateManager
     {
         #region "----------------------------- Private Fields ------------------------------"
-        //protected SpriteAnimationController _animationController;
+        protected ActorBase _actor;
         #endregion
 
 
 
         #region "------------------------------ Constructor --------------------------------"
-        public CharacterBase()
-        {
-
-        }
         #endregion
 
 
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-        public override void Update(double elapsedTime)
+        internal void Initialize(ActorBase actor)
         {
-            //_animationController.Tick(elapsedTime);
-            base.Update(elapsedTime);
+            _actor = actor;
         }
 
+        public abstract void Update(double elapsedTime);
 
+        public SpriteAnimation GetCurrentAnimation()
+        {
+            return CurrentAnimation;
+        }
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"
-        //protected void SetAnimationController(SpriteAnimationController animationController)
-        //{
-        //    _animationController = animationController;
-        //}
+
         #endregion
 
         #region "------------------------------ Event Handling -----------------------------"
@@ -46,7 +45,9 @@ namespace FirstMonoGame.Base.Character
 
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
-        //public CharacterStates CharacterStates { get; protected set; }
+        public Dictionary<string, SpriteAnimation> Animations { get; private set; } = new();
+
+        public SpriteAnimation CurrentAnimation { get; protected set; }
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

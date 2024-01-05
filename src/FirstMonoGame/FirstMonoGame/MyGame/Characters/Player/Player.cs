@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using FirstMonoGame.Base.Character;
-using FirstMonoGame.Base._2D.Renderer;
 using Microsoft.Xna.Framework;
+using FirstMonoGame.Base._2D.Actor.Components;
 
 namespace FirstMonoGame.MyGame.Characters.Player
 {
@@ -12,10 +11,13 @@ namespace FirstMonoGame.MyGame.Characters.Player
         #region "----------------------------- Private Fields ------------------------------"
         private float _speed = 2.0f;
 
-        private PlayerAnimationController _playerAnimationController;
+        //private PlayerAnimationController _playerAnimationController;
         private PlayerStates _playerStates;
+        private PlayerAnimationManager _animationManager;
 
         private bool _lastRight = true;
+
+        private SpriteAnimatorComponent _spriteAnimatorComponent;
         #endregion
 
 
@@ -34,8 +36,10 @@ namespace FirstMonoGame.MyGame.Characters.Player
         public void Init(ContentManager content, float xPosition = 0.0f, float yPosition = 0.0f)
         {
             _playerStates = new PlayerStates();
-            _playerAnimationController = new PlayerAnimationController(content, _playerStates as PlayerStates);
-            SetAnimationController(_playerAnimationController);
+            //_playerAnimationController = new PlayerAnimationController(content, _playerStates as PlayerStates);
+            //SetAnimationController(_playerAnimationController);
+            _animationManager = new PlayerAnimationManager(content, _playerStates);
+            AddComponent(new SpriteAnimatorComponent(this, _animationManager));
             _xPosition = xPosition;
             _yPosition = yPosition;
         }
@@ -125,23 +129,23 @@ namespace FirstMonoGame.MyGame.Characters.Player
             base.Update(elapsedTime);
         }
 
-        public override void GetDrawInfo(ref DrawInfo2D drawInfo)
-        {
-            _animationController.GetDrawInfoSprite(ref drawInfo);
-            if (drawInfo.IsTileMap)
-            {
-                drawInfo.DestinationRectancle = new Rectangle(
-                    (int)_xPosition, 
-                    (int)_yPosition, 
-                    (int)(drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),
-                    (int)(drawInfo.SourceRectancle.Height * drawInfo.SpriteScale));
-            }
-            else
-            {
-                drawInfo.XPosition = _xPosition;
-                drawInfo.YPosition = _yPosition;
-            }
-        }
+        //public override void GetDrawInfo(ref DrawInfo2D drawInfo)
+        //{
+        //    _animationController.GetDrawInfoSprite(ref drawInfo);
+        //    if (drawInfo.IsTileMap)
+        //    {
+        //        drawInfo.DestinationRectancle = new Rectangle(
+        //            (int)_xPosition, 
+        //            (int)_yPosition, 
+        //            (int)(drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),
+        //            (int)(drawInfo.SourceRectancle.Height * drawInfo.SpriteScale));
+        //    }
+        //    else
+        //    {
+        //        drawInfo.XPosition = _xPosition;
+        //        drawInfo.YPosition = _yPosition;
+        //    }
+        //}
 
         public override Vector2 GetPosition()
         {

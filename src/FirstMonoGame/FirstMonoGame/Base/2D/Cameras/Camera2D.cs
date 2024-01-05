@@ -1,6 +1,6 @@
 ﻿using FirstMonoGame.Base._2D.Map;
 using FirstMonoGame.Base._2D.Renderer;
-using FirstMonoGame.Base.Actor;
+using FirstMonoGame.Base._2D.Actor;
 using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;

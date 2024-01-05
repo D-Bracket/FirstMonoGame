@@ -1,4 +1,4 @@
-﻿using FirstMonoGame.Base.Actor;
+﻿using FirstMonoGame.Base._2D.Actor;
 
 namespace FirstMonoGame.PlugIns.AbilitySystem
 {
@@ -32,6 +32,7 @@ namespace FirstMonoGame.PlugIns.AbilitySystem
 
         #endregion
         #endregion
+
 
 
         #region "--------------------------- Public Propterties ----------------------------"

@@ -1,10 +1,8 @@
 ﻿using FirstMonoGame.Base;
 using FirstMonoGame.Base._2D.Map;
-using FirstMonoGame.Base._2D.Renderer;
 using FirstMonoGame.Base._2D.Sprites;
 using FirstMonoGame.MyGame.Characters.Player;
 using FirstMonoGame.MyGame.Characters.Zombie;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;

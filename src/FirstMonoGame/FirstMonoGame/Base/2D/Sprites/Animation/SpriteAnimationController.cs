@@ -1,4 +1,5 @@
 ﻿using FirstMonoGame.Base._2D.Renderer;
+using FirstMonoGame.Base._2D.Actor;
 using Microsoft.Xna.Framework.Content;
 
 namespace FirstMonoGame.Base.Sprites.Animation
@@ -25,7 +26,6 @@ namespace FirstMonoGame.Base.Sprites.Animation
         public abstract void Tick(double time);
 
         public abstract void GetDrawInfoSprite(ref DrawInfo2D drawInfo);
-
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"
@@ -36,6 +36,7 @@ namespace FirstMonoGame.Base.Sprites.Animation
 
         #endregion
         #endregion
+
 
 
         #region "--------------------------- Public Propterties ----------------------------"

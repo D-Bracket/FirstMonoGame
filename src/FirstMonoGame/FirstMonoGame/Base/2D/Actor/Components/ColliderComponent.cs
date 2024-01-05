@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstMonoGame.Base.Actor
+namespace FirstMonoGame.Base._2D.Actor.Components
 {
-    public abstract class ActorComponentBase
+    internal class ColliderComponent
     {
         #region "----------------------------- Private Fields ------------------------------"
 

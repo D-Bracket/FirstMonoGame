@@ -10,6 +10,11 @@ namespace FirstMonoGame
 {
     // Sprite Cutting https://www.piskelapp.com/p/create/sprite
 
+    // ToDo - Base:
+    // Implement Actor Components
+    // Collision
+    // UI
+    // Sound
 
 
     public class Game1 : Game

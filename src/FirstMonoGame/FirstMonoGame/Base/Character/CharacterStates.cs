@@ -1,6 +1,6 @@
 ﻿namespace FirstMonoGame.Base.Character
 {
-    internal class CharacterStates
+    public class CharacterStates
     {
         #region "----------------------------- Private Fields ------------------------------"
 
@@ -27,6 +27,7 @@
 
         #endregion
         #endregion
+
 
 
         #region "--------------------------- Public Propterties ----------------------------"

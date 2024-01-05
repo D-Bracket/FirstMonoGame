@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FirstMonoGame.Base._2D.Sprites
 {
-    internal abstract class SpriteSourceBase
+    public abstract class SpriteSourceBase
     {
         #region "----------------------------- Private Fields ------------------------------"
         protected float _spriteScale;
@@ -33,6 +33,7 @@ namespace FirstMonoGame.Base._2D.Sprites
 
         #endregion
         #endregion
+
 
 
         #region "--------------------------- Public Propterties ----------------------------"

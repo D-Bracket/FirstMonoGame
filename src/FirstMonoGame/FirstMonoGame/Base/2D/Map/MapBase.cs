@@ -1,7 +1,5 @@
 ﻿using FirstMonoGame.Base._2D.Cameras;
-using FirstMonoGame.Base._2D.Renderer;
-using FirstMonoGame.Base.Actor;
-using Microsoft.Xna.Framework;
+using FirstMonoGame.Base._2D.Actor;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
