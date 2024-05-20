@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace FirstMonoGame.Base._2D.Sprites
+﻿namespace FirstMonoGame.Base._2D.Sprites
 {
     internal class SpriteSourceTileMapSettings
     {
@@ -32,6 +30,7 @@ namespace FirstMonoGame.Base._2D.Sprites
 
         #endregion
         #endregion
+
 
 
         #region "--------------------------- Public Propterties ----------------------------"

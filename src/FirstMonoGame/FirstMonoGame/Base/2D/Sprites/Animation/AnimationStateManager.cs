@@ -7,7 +7,7 @@ namespace FirstMonoGame.Base._2D.Sprites.Animation
     public abstract class AnimationStateManager
     {
         #region "----------------------------- Private Fields ------------------------------"
-        protected ActorBase _actor;
+        protected Actor2DBase _actor;
         #endregion
 
 
@@ -19,7 +19,7 @@ namespace FirstMonoGame.Base._2D.Sprites.Animation
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-        internal void Initialize(ActorBase actor)
+        internal void Initialize(Actor2DBase actor)
         {
             _actor = actor;
         }

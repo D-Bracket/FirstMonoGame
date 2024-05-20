@@ -4,7 +4,7 @@ using FirstMonoGame.Base.Sprites.Animation;
 
 namespace FirstMonoGame.Base._2D.Actor.Components
 {
-    public class SpriteAnimatorComponent : ActorComponentBase
+    public class SpriteAnimatorComponent : Actor2DComponentBase
     {
         #region "----------------------------- Private Fields ------------------------------"
         // Remote, that sets the current animation and must be created for each character
@@ -16,7 +16,7 @@ namespace FirstMonoGame.Base._2D.Actor.Components
 
 
         #region "------------------------------ Constructor --------------------------------"
-        public SpriteAnimatorComponent(ActorBase actor, AnimationStateManager stateManager) : base(actor)
+        public SpriteAnimatorComponent(Actor2DBase actor, AnimationStateManager stateManager) : base(actor)
         {
             _stateManager = stateManager;
             _stateManager.Initialize(actor);

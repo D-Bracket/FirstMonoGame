@@ -35,6 +35,7 @@ namespace FirstMonoGame.MyGame.Characters.Zombie
         #endregion
 
 
+
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
         public PlayerMovementStates PlayerMovementStates { get; set; }

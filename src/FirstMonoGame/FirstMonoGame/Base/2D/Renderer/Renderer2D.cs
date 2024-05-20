@@ -1,12 +1,7 @@
 ﻿using FirstMonoGame.Base._2D.Cameras;
-using FirstMonoGame.MyGame.Characters.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FirstMonoGame.Base._2D.Renderer
 {

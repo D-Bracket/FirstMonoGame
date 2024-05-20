@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using FirstMonoGame.Base.Character;
 using Microsoft.Xna.Framework;
 using FirstMonoGame.Base._2D.Actor.Components;
+using FirstMonoGame.Base._2D.Map;
 
 namespace FirstMonoGame.MyGame.Characters.Player
 {
@@ -11,21 +12,22 @@ namespace FirstMonoGame.MyGame.Characters.Player
         #region "----------------------------- Private Fields ------------------------------"
         private float _speed = 2.0f;
 
-        //private PlayerAnimationController _playerAnimationController;
         private PlayerStates _playerStates;
         private PlayerAnimationManager _animationManager;
 
         private bool _lastRight = true;
 
         private SpriteAnimatorComponent _spriteAnimatorComponent;
+
+        private MapBase _map;
         #endregion
 
 
 
         #region "------------------------------ Constructor --------------------------------"
-        public Player()
+        public Player(MapBase map)
         {
-
+            _map = map;
         }
         #endregion
 
@@ -36,31 +38,31 @@ namespace FirstMonoGame.MyGame.Characters.Player
         public void Init(ContentManager content, float xPosition = 0.0f, float yPosition = 0.0f)
         {
             _playerStates = new PlayerStates();
-            //_playerAnimationController = new PlayerAnimationController(content, _playerStates as PlayerStates);
-            //SetAnimationController(_playerAnimationController);
             _animationManager = new PlayerAnimationManager(content, _playerStates);
             AddComponent(new SpriteAnimatorComponent(this, _animationManager));
             _xPosition = xPosition;
             _yPosition = yPosition;
         }
 
-
         public override void Update(double elapsedTime)
         {
+            var xPosition = 0.0f;
+            var yPosition = 0.0f;
+
             var kstate = Keyboard.GetState();
             var noMovement = true;
             if (kstate.IsKeyDown(Keys.D) && !kstate.IsKeyDown(Keys.A))
             {
                 if (kstate.IsKeyDown(Keys.LeftShift))
                 {
-                    _xPosition +=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 3.0f);
+                    xPosition = _xPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 3.0f);
                     _playerStates.PlayerMovementStates = PlayerMovementStates.RunningRight;
                     _lastRight = true;
                     noMovement = false;
                 }
                 else
                 {
-                    _xPosition +=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 1.0f);
+                    xPosition = _xPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 1.0f);
                     _playerStates.PlayerMovementStates = PlayerMovementStates.WalkingRight;
                     _lastRight = true;
                     noMovement = false;
@@ -70,14 +72,14 @@ namespace FirstMonoGame.MyGame.Characters.Player
             {
                 if (kstate.IsKeyDown(Keys.LeftShift))
                 {
-                    _xPosition -=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 3.0f);
+                    xPosition = _xPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 3.0f);
                     _playerStates.PlayerMovementStates = PlayerMovementStates.RunningLeft;
                     _lastRight = false;
                     noMovement = false;
                 }
                 else
                 {
-                    _xPosition -=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 1.0f);
+                    xPosition = _xPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 1.0f);
                     _playerStates.PlayerMovementStates = PlayerMovementStates.WalkingLeft;
                     _lastRight = false;
                     noMovement = false;
@@ -88,13 +90,13 @@ namespace FirstMonoGame.MyGame.Characters.Player
             {
                 if (kstate.IsKeyDown(Keys.LeftShift))
                 {
-                    _yPosition -=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 3.0f;
+                    yPosition = _yPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 3.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.RunningRight : PlayerMovementStates.RunningLeft;
                     noMovement = false;
                 }
                 else
                 {
-                    _yPosition -=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 1.0f;
+                    yPosition = _yPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 1.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.WalkingRight : PlayerMovementStates.WalkingLeft;
                     noMovement = false;
                 }
@@ -103,13 +105,13 @@ namespace FirstMonoGame.MyGame.Characters.Player
             {
                 if (kstate.IsKeyDown(Keys.LeftShift))
                 {
-                    _yPosition +=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 3.0f;
+                    yPosition = _yPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 3.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.RunningRight : PlayerMovementStates.RunningLeft;
                     noMovement = false;
                 }
                 else
                 {
-                    _yPosition +=/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 1.0f;
+                    yPosition = _yPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 1.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.WalkingRight : PlayerMovementStates.WalkingLeft;
                     noMovement = false;
                 }
@@ -126,26 +128,22 @@ namespace FirstMonoGame.MyGame.Characters.Player
                     _playerStates.PlayerMovementStates = PlayerMovementStates.IdleLeft;
                 }
             }
+            else
+            {
+                var xCollision = xPosition == 0 ? _xPosition : xPosition;
+                var yCollision = yPosition == 0 ? _yPosition : yPosition;
+                var result = _map.CheckForCollision(this, xCollision, yCollision);
+                if (!result)
+                {
+                    if (xPosition != 0.0f)
+                        _xPosition = xPosition;
+
+                    if (yPosition != 0.0f)
+                        _yPosition = yPosition;
+                }
+            }
             base.Update(elapsedTime);
         }
-
-        //public override void GetDrawInfo(ref DrawInfo2D drawInfo)
-        //{
-        //    _animationController.GetDrawInfoSprite(ref drawInfo);
-        //    if (drawInfo.IsTileMap)
-        //    {
-        //        drawInfo.DestinationRectancle = new Rectangle(
-        //            (int)_xPosition, 
-        //            (int)_yPosition, 
-        //            (int)(drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),
-        //            (int)(drawInfo.SourceRectancle.Height * drawInfo.SpriteScale));
-        //    }
-        //    else
-        //    {
-        //        drawInfo.XPosition = _xPosition;
-        //        drawInfo.YPosition = _yPosition;
-        //    }
-        //}
 
         public override Vector2 GetPosition()
         {

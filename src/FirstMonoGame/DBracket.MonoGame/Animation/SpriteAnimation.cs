@@ -35,6 +35,7 @@ namespace DBracket.MonoGame.Animation
         #endregion
 
 
+
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
 

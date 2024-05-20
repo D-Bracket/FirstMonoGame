@@ -3,8 +3,6 @@ using FirstMonoGame.Base._2D.Renderer;
 using FirstMonoGame.Base._2D.Actor;
 using Microsoft.Xna.Framework;
 using System;
-using System.Diagnostics;
-using System.Threading;
 
 namespace FirstMonoGame.Base._2D.Cameras
 {
@@ -18,7 +16,7 @@ namespace FirstMonoGame.Base._2D.Cameras
         // Inject RenderDetails, to get Bounds
         private MapBase _map;
 
-        private ActorBase _actor;
+        private Actor2DBase _actor;
 
         private ResolutionSettings _resolutionSettings;
 
@@ -40,7 +38,7 @@ namespace FirstMonoGame.Base._2D.Cameras
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-        public void AttachCameraToActor(ActorBase actor)
+        public void AttachCameraToActor(Actor2DBase actor)
         {
             _actor = actor;
         }
@@ -145,48 +143,6 @@ namespace FirstMonoGame.Base._2D.Cameras
                         drawInfo.YPosition = actorY - (drawInfo.Sprite.Bounds.Height * 2);
                     }
                     renderCallback(drawInfo);
-                }
-            }
-        }
-
-        private void GetRenderDetails(Vector2 center, Rectangle bounds, DrawInfo2D drawInfo, Func<DrawInfo2D, bool> drawCallBack)
-        {
-            var resolution = _resolutionSettings.CurrentResolution;
-            // Step1: Get the Number of tiles to render + 1
-            // Horizontal tiles to render + 1
-            var x = (int)(resolution.Width / resolution.SpriteScale / _map.TileXSize);
-            var x_1 = x + 1;
-            // Vertical tiles to render + 1
-            var y = (int)(resolution.Height / resolution.SpriteScale / _map.TileYSize);
-            var y_1 = y + 1;
-
-            // Step2: Find all the tile indices
-            var centerTile = _map.Tiles[(int)(center.X / _map.TileXSize), (int)(center.Y / _map.TileYSize)];
-            var xStartIndex = centerTile.XPosition - x / 2 - 1;
-            //var xEndIndex = centerTile.XPosition + x / 2;
-            var yStartIndex = centerTile.YPosition - y / 2 - 1;
-            //var yEndTile = centerTile.YPosition + y / 2;
-
-            // Step3: Find the StartPOINTs
-            // Horizontal StartPOINT
-            var xOffset = center.X - centerTile.XPosition * _map.TileXSize;
-            var xStartPoint = -xOffset * drawInfo.SpriteScale;
-            // Vertical StartPOINT
-            var yOffset = center.Y - centerTile.YPosition * _map.TileYSize;
-            var yStartPoint = -yOffset * drawInfo.SpriteScale;
-
-
-            for (int i = xStartIndex; i < xStartIndex + x_1; i++)
-            {
-                for (int j = yStartIndex; j < yStartIndex + y_1; j++)
-                {
-                    _map.Tiles[j, i].TerrainTexture.GetDrawInfo(ref drawInfo);
-                    drawInfo.DestinationRectancle = new Rectangle(
-                        (int)(xStartPoint + (i - xStartIndex) * drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),// + (i * 1),
-                        (int)(yStartPoint + (j - yStartIndex) * drawInfo.SourceRectancle.Height * drawInfo.SpriteScale), // - (j * 1),
-                        (int)(drawInfo.SourceRectancle.Width * drawInfo.SpriteScale),
-                        (int)(drawInfo.SourceRectancle.Height * drawInfo.SpriteScale));
-                    drawCallBack(drawInfo);
                 }
             }
         }

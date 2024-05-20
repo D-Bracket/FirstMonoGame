@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FirstMonoGame.Base._2D.Actor.Components
+﻿namespace FirstMonoGame.Base._2D.Actor.Components
 {
-    internal class ColliderComponent
+    public abstract class Actor2DComponentBase
     {
         #region "----------------------------- Private Fields ------------------------------"
-
+        protected Actor2DBase _actor;
         #endregion
 
 
 
         #region "------------------------------ Constructor --------------------------------"
-
+        public Actor2DComponentBase(Actor2DBase actor)
+        {
+            _actor = actor;
+        }
         #endregion
 
 
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-
+        public abstract void Update(double elapsedTime);
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"

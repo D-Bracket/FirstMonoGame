@@ -2,10 +2,9 @@
 
 namespace FirstMonoGame.Base.Character
 {
-    internal abstract class CharacterBase : ActorBase
+    internal abstract class CharacterBase : Actor2DBase
     {
         #region "----------------------------- Private Fields ------------------------------"
-        //protected SpriteAnimationController _animationController;
         #endregion
 
 
@@ -23,18 +22,12 @@ namespace FirstMonoGame.Base.Character
         #region "----------------------------- Public Methods ------------------------------"
         public override void Update(double elapsedTime)
         {
-            //_animationController.Tick(elapsedTime);
             base.Update(elapsedTime);
         }
-
-
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"
-        //protected void SetAnimationController(SpriteAnimationController animationController)
-        //{
-        //    _animationController = animationController;
-        //}
+
         #endregion
 
         #region "------------------------------ Event Handling -----------------------------"
@@ -46,7 +39,7 @@ namespace FirstMonoGame.Base.Character
 
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
-        //public CharacterStates CharacterStates { get; protected set; }
+
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

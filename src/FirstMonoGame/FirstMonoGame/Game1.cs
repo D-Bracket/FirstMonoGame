@@ -65,8 +65,8 @@ namespace FirstMonoGame
             // TODO: Add your initialization logic here
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _renderer = new Renderer2D(_spriteBatch);
-            _player = new Player();
             _map = new Map1(3200, 3200, 100, 100);
+            //_player = new Player(_map);
 
             base.Initialize();
         }
@@ -75,7 +75,7 @@ namespace FirstMonoGame
         {
 
             // TODO: use this.Content to load your game content here
-            _player.Init(Content);
+            //_player.Init(Content);
             _map.LoadContent(Content);
         }
 

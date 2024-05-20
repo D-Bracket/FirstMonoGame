@@ -78,7 +78,7 @@ namespace FirstMonoGame.MyGame.Maps
                 }
             }
 
-            _player = new Player();
+            _player = new Player(this);
             _player.Init(content, Width / 2, Height / 2);
             _camera.AttachCameraToActor(_player);
             _actors.Add("Player", _player);

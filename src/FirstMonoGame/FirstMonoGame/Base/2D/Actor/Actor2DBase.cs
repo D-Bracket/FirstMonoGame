@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace FirstMonoGame.Base._2D.Actor
 {
-    public abstract class ActorBase
+    public abstract class Actor2DBase
     {
         #region "----------------------------- Private Fields ------------------------------"
-        protected float _xPosition;
-        protected float _yPosition;
+        internal float _xPosition;
+        internal float _yPosition;
         #endregion
 
 
@@ -28,6 +28,22 @@ namespace FirstMonoGame.Base._2D.Actor
             return new Vector2(_xPosition, _yPosition);
         }
 
+        public Vector2 GetWidthAndHeight()
+        {
+            if (HasToBeRendered)
+            {
+                var animator = Components.FirstOrDefault(x => x.GetType() == typeof(SpriteAnimatorComponent)) as SpriteAnimatorComponent;
+                var drawInfo = new DrawInfo2D();
+                animator.GetDrawInfoSprite(drawInfo);
+
+                return new Vector2(drawInfo.SourceRectancle.Width*drawInfo.SpriteScale, drawInfo.SourceRectancle.Height * drawInfo.SpriteScale);
+            }
+            else
+            {
+                return new Vector2();
+            }
+        }
+
         public virtual void Update(double elapsedTime)
         {
             foreach (var component in Components)
@@ -42,7 +58,7 @@ namespace FirstMonoGame.Base._2D.Actor
             animator.GetDrawInfoSprite(drawInfo);
         }
 
-        public void AddComponent(ActorComponentBase component)
+        public void AddComponent(Actor2DComponentBase component)
         {
             Components.Add(component);
             if (component is SpriteAnimatorComponent)
@@ -65,7 +81,44 @@ namespace FirstMonoGame.Base._2D.Actor
         #region "------------------------------- Properties --------------------------------"
         public bool HasToBeRendered { get; protected set; } = true;
 
-        public IList<ActorComponentBase> Components { get; protected set; } = new List<ActorComponentBase>();
+        public double Width
+        {
+            get
+            {
+                if (HasToBeRendered)
+                {
+                    var animator = Components.FirstOrDefault(x => x.GetType() == typeof(SpriteAnimatorComponent)) as SpriteAnimatorComponent;
+                    var drawInfo = new DrawInfo2D();
+                    animator.GetDrawInfoSprite(drawInfo);
+
+                    return drawInfo.SourceRectancle.Width;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Height
+        {
+            get
+            {
+                if (HasToBeRendered)
+                {
+                    var animator = Components.FirstOrDefault(x => x.GetType() == typeof(SpriteAnimatorComponent)) as SpriteAnimatorComponent;
+                    var drawInfo = new DrawInfo2D();
+                    animator.GetDrawInfoSprite(drawInfo);
+
+                    return drawInfo.SourceRectancle.Height;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public IList<Actor2DComponentBase> Components { get; protected set; } = new List<Actor2DComponentBase>();
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

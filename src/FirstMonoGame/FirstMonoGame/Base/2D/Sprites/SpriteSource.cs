@@ -46,6 +46,7 @@ namespace FirstMonoGame.Base._2D.Sprites
         #endregion
 
 
+
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
         

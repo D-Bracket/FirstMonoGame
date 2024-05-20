@@ -2,7 +2,7 @@
 
 namespace FirstMonoGame.PlugIns.AbilitySystem
 {
-    public abstract class AbilityBase : ActorBase
+    public abstract class AbilityBase : Actor2DBase
     {
         #region "----------------------------- Private Fields ------------------------------"
 

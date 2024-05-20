@@ -31,6 +31,7 @@ namespace FirstMonoGame.MyGame.Characters.Player
         #endregion
 
 
+
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
         public PlayerMovementStates PlayerMovementStates { get; set; }
