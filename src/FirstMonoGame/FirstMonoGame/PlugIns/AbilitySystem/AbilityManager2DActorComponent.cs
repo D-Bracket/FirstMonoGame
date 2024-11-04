@@ -1,6 +1,9 @@
-﻿namespace FirstMonoGame.Base._2D.Actor.Components
+﻿using FirstMonoGame.Base._2D.Actor;
+using FirstMonoGame.Base._2D.Actor.Components;
+
+namespace FirstMonoGame.PlugIns.AbilitySystem
 {
-    internal class Collider2DComponent
+    public class AbilityManager2DActorComponent : Actor2DComponentBase
     {
         #region "----------------------------- Private Fields ------------------------------"
 
@@ -9,14 +12,20 @@
 
 
         #region "------------------------------ Constructor --------------------------------"
-
+        public AbilityManager2DActorComponent(Actor2DBase actor) : base(actor)
+        {
+            
+        }
         #endregion
 
 
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
-
+        public override void Update(double elapsedTime)
+        {
+            
+        }
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"

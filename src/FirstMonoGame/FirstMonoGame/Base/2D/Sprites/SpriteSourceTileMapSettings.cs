@@ -1,6 +1,6 @@
 ﻿namespace FirstMonoGame.Base._2D.Sprites
 {
-    internal class SpriteSourceTileMapSettings
+    public class SpriteSourceTileMapSettings
     {
         #region "----------------------------- Private Fields ------------------------------"
 

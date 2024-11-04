@@ -3,6 +3,7 @@ using FirstMonoGame.Base.Character;
 using FirstMonoGame.MyGame.Characters.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using System;
 
 namespace FirstMonoGame.MyGame.Characters.Zombie
 {
@@ -22,7 +23,7 @@ namespace FirstMonoGame.MyGame.Characters.Zombie
         #region "------------------------------ Constructor --------------------------------"
         public Zombie()
         {
-            
+
         }
         #endregion
 
@@ -39,8 +40,12 @@ namespace FirstMonoGame.MyGame.Characters.Zombie
             _yPosition = yPosition;
         }
 
+
+
         public override void Update(double elapsedTime)
         {
+
+
             // var kstate = Keyboard.GetState();
             // var noMovement = true;
             // if (kstate.IsKeyDown(Keys.D) && !kstate.IsKeyDown(Keys.A))

@@ -3,12 +3,12 @@ using FirstMonoGame.Base._2D.Actor;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using FirstMonoGame.Base._2D.Renderer;
 using System.Diagnostics;
+using System;
 
 namespace FirstMonoGame.Base._2D.Map
 {
-    internal abstract class MapBase
+    public abstract class MapBase
     {
         #region "----------------------------- Private Fields ------------------------------"
         protected Camera2D _camera;
@@ -16,7 +16,7 @@ namespace FirstMonoGame.Base._2D.Map
         protected int _numberOfColumns, _numberOfRows;
 
         public float TileScale { get; set; } = 1.0f;
-        internal Dictionary<string, Actor2DBase> _actors = new();
+        internal Dictionary<Guid, Actor2DBase> _actors = new();
         #endregion
 
 
@@ -46,6 +46,21 @@ namespace FirstMonoGame.Base._2D.Map
             {
                 actor.Update(elapsedTime);
             }
+        }
+
+        public void AddActor(Actor2DBase actor)
+        {
+            if (_actors.ContainsKey(actor.ID))
+                return;
+
+            _actors.Add(actor.ID, actor);
+        }
+        public void DestroyActor(Actor2DBase actor)
+        {
+            if (_actors.ContainsKey(actor.ID) == false)
+                return;
+
+            _actors.Remove(actor.ID);
         }
 
         public bool CheckForCollision(Actor2DBase movingActor, double newX, double newY)

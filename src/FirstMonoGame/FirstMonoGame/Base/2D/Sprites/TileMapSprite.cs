@@ -2,7 +2,7 @@
 
 namespace FirstMonoGame.Base._2D.Sprites
 {
-    internal class TileMapSprite
+    public class TileMapSprite
     {
         #region "----------------------------- Private Fields ------------------------------"
         private TileMapSpriteSource _tileMapSpriteSource;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FirstMonoGame.Base._2D.Sprites
 {
-    internal class TileMapSpriteSource : SpriteSourceBase
+    public class TileMapSpriteSource : SpriteSourceBase
     {
         #region "----------------------------- Private Fields ------------------------------"
         private Texture2D _tileMap;

@@ -1,6 +1,7 @@
 ﻿using FirstMonoGame.Base._2D.Actor.Components;
 using FirstMonoGame.Base._2D.Renderer;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -119,6 +120,9 @@ namespace FirstMonoGame.Base._2D.Actor
         }
 
         public IList<Actor2DComponentBase> Components { get; protected set; } = new List<Actor2DComponentBase>();
+
+
+        public Guid ID { get; } = Guid.NewGuid();
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

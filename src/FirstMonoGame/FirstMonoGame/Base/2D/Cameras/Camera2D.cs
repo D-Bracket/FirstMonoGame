@@ -6,7 +6,7 @@ using System;
 
 namespace FirstMonoGame.Base._2D.Cameras
 {
-    internal class Camera2D
+    public class Camera2D
     {
         #region "----------------------------- Private Fields ------------------------------"
         // Camera is attached to object; has bounds that are dependend on the resolution

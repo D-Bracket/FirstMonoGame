@@ -1,10 +1,12 @@
 ﻿using FirstMonoGame.Base;
+using FirstMonoGame.Base._2D.Map;
 using FirstMonoGame.Base._2D.Renderer;
 using FirstMonoGame.MyGame.Characters.Player;
 using FirstMonoGame.MyGame.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace FirstMonoGame
 {
@@ -28,7 +30,7 @@ namespace FirstMonoGame
 
         private Renderer2D _renderer;
         private Player _player;
-        private Map1 _map;
+        internal static Map1 _map;
         #endregion
 
 
@@ -49,6 +51,15 @@ namespace FirstMonoGame
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
+            // Cap framerate
+            //this.IsFixedTimeStep = true;//false;
+            //this.TargetElapsedTime = TimeSpan.FromSeconds(1d / 60); //60);
+
+            //// Activate V-Sync
+            //_graphics.PreparingDeviceSettings += (sender, e) =>
+            //{
+            //    e.GraphicsDeviceInformation.PresentationParameters.PresentationInterval = PresentInterval.Two;
+            //};
         }
         #endregion
 
@@ -66,17 +77,20 @@ namespace FirstMonoGame
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _renderer = new Renderer2D(_spriteBatch);
             _map = new Map1(3200, 3200, 100, 100);
+            CurrentMap = _map;
             //_player = new Player(_map);
 
             base.Initialize();
         }
 
+        internal static SpriteFont _font;
         protected override void LoadContent()
         {
 
             // TODO: use this.Content to load your game content here
             //_player.Init(Content);
             _map.LoadContent(Content);
+            _font = Content.Load<SpriteFont>("Fonts/JetBrains");
         }
 
         protected override void Update(GameTime gameTime)
@@ -89,13 +103,16 @@ namespace FirstMonoGame
             base.Update(gameTime);
         }
 
-
+        internal static string _fps;
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //_spriteBatch.Begin();
-
+            double t = 1;
+            t = t / gameTime.ElapsedGameTime.Milliseconds;
+            t = t * 1000;
+            _fps = t.ToString();
             _renderer.RenderCameraScene();
             //_map.GetDrawInfo(ref _drawInfo);
             //DrawThisShit();
@@ -112,12 +129,12 @@ namespace FirstMonoGame
             {
                 if (_drawInfo.IsTileMap)
                 {
-                    _drawInfo.DestinationRectancle = 
+                    _drawInfo.DestinationRectancle =
                         new Rectangle(
                             _drawInfo.DestinationRectancle.X,
                             _drawInfo.DestinationRectancle.Y,
-                            _drawInfo.SourceRectancle.Width*4,
-                            _drawInfo.SourceRectancle.Height*4);
+                            _drawInfo.SourceRectancle.Width * 4,
+                            _drawInfo.SourceRectancle.Height * 4);
                     _spriteBatch.Draw(_drawInfo.Sprite, _drawInfo.DestinationRectancle, _drawInfo.SourceRectancle, Color.White);
                 }
                 else
@@ -125,7 +142,7 @@ namespace FirstMonoGame
                     var t = new Rectangle(0, 0, 120, 120);
                     var effect = new SpriteEffects();
                     var scale = 4.0f;
-                    _spriteBatch.Draw(_drawInfo.Sprite, new Vector2(_drawInfo.XPosition, _drawInfo.YPosition), t, Color.White,0,new Vector2(0,0), scale, effect, 1);
+                    _spriteBatch.Draw(_drawInfo.Sprite, new Vector2(_drawInfo.XPosition, _drawInfo.YPosition), t, Color.White, 0, new Vector2(0, 0), scale, effect, 1);
                 }
             }
         }
@@ -140,7 +157,7 @@ namespace FirstMonoGame
 
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
-
+        public static MapBase CurrentMap { get; private set; }
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"

@@ -17,7 +17,7 @@ namespace FirstMonoGame.MyGame.Characters.Player
 
         private bool _lastRight = true;
 
-        private SpriteAnimatorComponent _spriteAnimatorComponent;
+        //private SpriteAnimatorComponent _spriteAnimatorComponent;
 
         private MapBase _map;
         #endregion
@@ -62,7 +62,7 @@ namespace FirstMonoGame.MyGame.Characters.Player
                 }
                 else
                 {
-                    xPosition = _xPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 1.0f);
+                    xPosition = _xPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 2.0f);
                     _playerStates.PlayerMovementStates = PlayerMovementStates.WalkingRight;
                     _lastRight = true;
                     noMovement = false;
@@ -79,7 +79,7 @@ namespace FirstMonoGame.MyGame.Characters.Player
                 }
                 else
                 {
-                    xPosition = _xPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 1.0f);
+                    xPosition = _xPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ (_speed * 2.0f);
                     _playerStates.PlayerMovementStates = PlayerMovementStates.WalkingLeft;
                     _lastRight = false;
                     noMovement = false;
@@ -90,13 +90,13 @@ namespace FirstMonoGame.MyGame.Characters.Player
             {
                 if (kstate.IsKeyDown(Keys.LeftShift))
                 {
-                    yPosition = _yPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 3.0f;
+                    yPosition = _yPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 4.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.RunningRight : PlayerMovementStates.RunningLeft;
                     noMovement = false;
                 }
                 else
                 {
-                    yPosition = _yPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 1.0f;
+                    yPosition = _yPosition -/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 2.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.WalkingRight : PlayerMovementStates.WalkingLeft;
                     noMovement = false;
                 }
@@ -105,13 +105,13 @@ namespace FirstMonoGame.MyGame.Characters.Player
             {
                 if (kstate.IsKeyDown(Keys.LeftShift))
                 {
-                    yPosition = _yPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 3.0f;
+                    yPosition = _yPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 4.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.RunningRight : PlayerMovementStates.RunningLeft;
                     noMovement = false;
                 }
                 else
                 {
-                    yPosition = _yPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 1.0f;
+                    yPosition = _yPosition +/* MathF.Round(_speed * (float)gameTime.ElapsedGameTime.TotalSeconds) +*/ 2.0f;
                     _playerStates.PlayerMovementStates = _lastRight ? PlayerMovementStates.WalkingRight : PlayerMovementStates.WalkingLeft;
                     noMovement = false;
                 }

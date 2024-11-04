@@ -673,6 +673,18 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Zombie/Zombie.png;Characters/Zombie/Zombie_unsorted.png
 
+#begin Effects/Magic/fireball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Effects/Magic/fireball.png
+
 #begin Effects/Magic/ice_b1_tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -684,6 +696,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Effects/Magic/ice_b1_tileset.png
+
+#begin Fonts/JetBrains.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/JetBrains.spritefont
 
 #begin Terrain/Old Prison/Tileset-Terrain-old prison.png
 /importer:TextureImporter

@@ -48,6 +48,7 @@ namespace FirstMonoGame.Base._2D.Renderer
             {
                 camera.Value.RenderScene(_drawInfo, RenderContent);
             }
+            _spriteBatch.DrawString(Game1._font, Game1._fps, Vector2.Zero, Color.White);
 
             _spriteBatch.End();
         }

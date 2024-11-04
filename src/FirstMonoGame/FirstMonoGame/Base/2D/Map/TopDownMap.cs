@@ -67,7 +67,7 @@ namespace FirstMonoGame.Base._2D.Map
         #endregion
     }
 
-    internal class MapRow
+    public class MapRow
     {
         public MapRow(int numberOfColumns)
         {
@@ -81,7 +81,7 @@ namespace FirstMonoGame.Base._2D.Map
         public MapColumn[] Columns { get; set; }
     }
 
-    internal class MapColumn
+    public class MapColumn
     {
         public MapColumn(int numberOfRows)
         {
@@ -96,7 +96,7 @@ namespace FirstMonoGame.Base._2D.Map
         public MapTile Tile { get; set; } = new();
     }
 
-    internal class MapTile
+    public class MapTile
     {
         public TileMapSprite TerrainTexture { get; set; }
         public int XPosition { get; set; }

@@ -1,6 +1,8 @@
 ﻿using FirstMonoGame.Base;
+using FirstMonoGame.Base._2D.Actor.Components;
 using FirstMonoGame.Base._2D.Map;
 using FirstMonoGame.Base._2D.Sprites;
+using FirstMonoGame.MyGame.Abilities;
 using FirstMonoGame.MyGame.Characters.Player;
 using FirstMonoGame.MyGame.Characters.Zombie;
 using Microsoft.Xna.Framework.Content;
@@ -81,12 +83,25 @@ namespace FirstMonoGame.MyGame.Maps
             _player = new Player(this);
             _player.Init(content, Width / 2, Height / 2);
             _camera.AttachCameraToActor(_player);
-            _actors.Add("Player", _player);
+            AddActor(_player);
+            //_actors.Add("Player", _player);
 
             _zombie = new Zombie();
+            var zombieChaseComponent = new Chase2DComponent(_zombie);
+            zombieChaseComponent.SetTarget(_player);
+            _zombie.AddComponent(zombieChaseComponent);
             _zombie.Init(content, Width / 2 -300, Height / 2 -300);
-            _actors.Add("Zombie", _zombie);
+            AddActor(_zombie);
+            //_actors.Add("Zombie", _zombie);
+
+            var _fireBall = new FireBall(content);
+            _fireBall._xPosition = Width / 2 + 50;
+            _fireBall._yPosition = Height / 2 + 50;
+            AddActor(_fireBall);
+            //_actors.Add("FireBall", _fireBall);
         }
+
+
 
         public override void Update(double elapsedTime)
         {

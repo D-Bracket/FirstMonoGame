@@ -1,6 +1,9 @@
-﻿namespace FirstMonoGame.Base._2D.Actor.Components
+﻿using FirstMonoGame.Base.Sprites.Animation;
+using Microsoft.Xna.Framework.Content;
+
+namespace FirstMonoGame.Base._2D.Sprites.Animation
 {
-    internal class Collider2DComponent
+    public class SpriteAnimationManager : AnimationStateManager
     {
         #region "----------------------------- Private Fields ------------------------------"
 
@@ -9,14 +12,20 @@
 
 
         #region "------------------------------ Constructor --------------------------------"
-
+        public SpriteAnimationManager(ContentManager content, SpriteAnimation[] spriteAnimationCollection)
+        {
+            CurrentAnimation = spriteAnimationCollection[0];
+        }
         #endregion
 
 
 
         #region "--------------------------------- Methods ---------------------------------"
         #region "----------------------------- Public Methods ------------------------------"
+        public override void Update(double elapsedTime)
+        {
 
+        }
         #endregion
 
         #region "----------------------------- Private Methods -----------------------------"
@@ -32,7 +41,6 @@
 
         #region "--------------------------- Public Propterties ----------------------------"
         #region "------------------------------- Properties --------------------------------"
-
         #endregion
 
         #region "--------------------------------- Events ----------------------------------"
